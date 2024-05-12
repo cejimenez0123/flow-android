@@ -9,11 +9,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 
 interface ForkApiService {
-    @GET("/fork/")
+    @GET("fork/")
     fun getAdminForks():Response<Fork>
 
     companion object {
-        private const val BASE_URL = "https://flow-node-api.onrender.com"
+        private const val BASE_URL = "https://flow-node-production.up.railway.app/"
         val apiServiceInstance: ForkApiService by lazy {
             val gson = GsonBuilder()
                 .setLenient()

@@ -30,7 +30,10 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(navController = navController, startDestination = Screen.Login.route) {
                         composable(route = Screen.Login.route) {
-                            LogInScreen()
+                            LogInScreen(navigateToTree = {
+                                println("NAVFDFD")
+                                navController.navigate(Screen.Tree.route)
+                            })
                         }
                         composable(route=Screen.Tree.route){
                             TreeScreen()

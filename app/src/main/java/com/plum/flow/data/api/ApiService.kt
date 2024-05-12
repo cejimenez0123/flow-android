@@ -12,10 +12,10 @@ import retrofit2.http.POST
 
 interface ApiService {
 
-    @POST("/auth/login")
-    fun login(@Body logInRequest: LogInRequest): Response<String>
+    @POST("auth/login")
+    suspend fun login(@Body logInRequest: LogInRequest): Response<Token>
     companion object {
-        private const val BASE_URL = "https://flow-node-api.onrender.com"
+        private const val BASE_URL = "https://flow-node-production.up.railway.app/"
         val apiServiceInstance: ApiService by lazy {
             val gson = GsonBuilder()
                 .setLenient()

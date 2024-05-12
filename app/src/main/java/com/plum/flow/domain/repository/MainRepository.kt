@@ -5,5 +5,5 @@ import com.plum.flow.domain.model.Token
 
 interface MainRepository {
 
-    fun login(logInRequest: LogInRequest): Token?
+    suspend fun login(logInRequest: LogInRequest): Token?
 }

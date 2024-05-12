@@ -4,9 +4,9 @@ import com.plum.flow.utils.Resource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
-abstract class UseCase<in P, R>() {
+abstract class UseCase<in P, R>(private val coroutineDispatcher: CoroutineDispatcher) {
 
-    suspend operator fun invoke(parameters: P,coroutineDispatcher:CoroutineDispatcher): Resource<R> {
+    suspend operator fun invoke(parameters: P): Resource<R> {
         return try {
             withContext(coroutineDispatcher) {
                 execute(parameters).let {

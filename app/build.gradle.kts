@@ -53,6 +53,11 @@ android {
             excludes += "/META-INF/*"
         }
     }
+    dependenciesInfo {
+        includeInApk = true
+        includeInBundle = true
+    }
+    buildToolsVersion = "34.0.0"
 }
 
 dependencies {
@@ -69,6 +74,7 @@ dependencies {
     kapt(libs.androidx.hilt.compiler)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+    implementation("androidx.compose.material:material-icons-extended:1.4.3")
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.navigation.compose)
     implementation(libs.retrofit)
