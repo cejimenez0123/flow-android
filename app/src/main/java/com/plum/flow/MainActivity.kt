@@ -1,5 +1,6 @@
 package com.plum.flow
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,18 +11,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.plum.flow.di.AppComponent
+import com.plum.flow.di.AppDependencies
+import com.plum.flow.di.SharedModule
+import com.plum.flow.di.UseCaseModule
 import com.plum.flow.presentation.auth.LogInScreen
 import com.plum.flow.presentation.tree.TreeScreen
 import com.plum.flow.ui.theme.FlowandroidTheme
 import com.plum.flow.utils.Screen
 import dagger.hilt.android.AndroidEntryPoint
-
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity  : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
         setContent {
             FlowandroidTheme {
                 val navController = rememberNavController()
@@ -31,7 +39,6 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = Screen.Login.route) {
                         composable(route = Screen.Login.route) {
                             LogInScreen(navigateToTree = {
-                                println("NAVFDFD")
                                 navController.navigate(Screen.Tree.route)
                             })
                         }

@@ -10,7 +10,9 @@ import retrofit2.http.GET
 
 interface ForkApiService {
     @GET("fork/")
-    fun getAdminForks():Response<Fork>
+    fun getFocusFork():Response<Fork>
+    fun getForkChildren(id:String):Response<List<Fork>>
+
 
     companion object {
         private const val BASE_URL = "https://flow-node-production.up.railway.app/"

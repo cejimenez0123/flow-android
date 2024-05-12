@@ -1,12 +1,21 @@
 package com.plum.flow.domain.model
 
-data class Fork (
-    val id:String,
-    val name:String,
-    val dueDate:Boolean?,
-    val description:String?,
-    val completed:Boolean?,
-    val userId:String,
-    val parentId:String,
-    val style:HashMap<String,String>
+import java.util.Date
+
+data class Fork(
+    val completed: Boolean,
+    val description: String,
+    val dueDate: Date,
+    val id: String,
+    val link: String,
+    val name: String,
+    val parentId: String,
+    val style: Style,
+    val userId: String
+)
+
+data class Style(
+    val backgroundColor:String,
+    val color:String,
+    val primary:String
 )
