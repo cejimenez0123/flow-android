@@ -13,6 +13,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,6 +43,12 @@ fun LogInScreen( viewModel: AuthViewModel = hiltViewModel(),navigateToTree:()->U
             mutableStateOf("")
         }
         var cor = rememberCoroutineScope()
+        var token = viewModel.token.collectAsState().value
+        LaunchedEffect(key1 = token) {
+            if(token!=null) {
+                navigateToTree()
+            }
+        }
     Column(horizontalAlignment = Alignment.CenterHorizontally){
         Spacer(modifier = Modifier.weight(1F))
         TextField(value = email, onValueChange ={text->

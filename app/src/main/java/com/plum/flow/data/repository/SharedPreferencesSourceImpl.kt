@@ -21,12 +21,10 @@ class SharedPreferencesSourceImpl(@ApplicationContext val context: Context):
         val tokenStr= tokenPref.getString(PreferenceKeys.token, "")
         return tokenStr?.run{ Token(token=tokenStr)}
     }
-
     override fun clearToken() {
         val tokenPref = context.getSharedPreferences(PreferenceKeys.token, Context.MODE_PRIVATE)
         tokenPref.edit().run {
             remove(PreferenceKeys.token)
-
             apply()
         }
     }

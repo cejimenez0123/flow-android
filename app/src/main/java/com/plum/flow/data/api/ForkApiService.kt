@@ -2,16 +2,20 @@ package com.plum.flow.data.api
 
 import com.google.gson.GsonBuilder
 import com.plum.flow.domain.model.Fork
+import com.plum.flow.domain.model.ForkList
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ForkApiService {
     @GET("fork/")
-    fun getFocusFork():Response<Fork>
-    fun getForkChildren(id:String):Response<List<Fork>>
+    suspend fun getFocusFork():Response<Fork>
+
+    @GET("fork/children/{id}")
+    suspend fun getForkChildren(@Path("id")id:String):Response<ForkList>
 
 
     companion object {

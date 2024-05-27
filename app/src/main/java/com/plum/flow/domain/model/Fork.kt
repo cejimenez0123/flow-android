@@ -14,8 +14,3 @@ data class Fork(
     val userId: String
 )
 
-data class Style(
-    val backgroundColor:String,
-    val color:String,
-    val primary:String
-)

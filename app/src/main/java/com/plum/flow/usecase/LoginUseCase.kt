@@ -11,8 +11,8 @@ class LoginUseCase @Inject constructor(
     private val mainRepository: MainRepository
 ): UseCase<LogInRequest, Token?>(coroutineDispatcher) {
 
-    override suspend fun execute(logInRequest: LogInRequest): Token? {
-       val token = mainRepository.login(logInRequest = logInRequest)
+    override suspend fun execute(parameters: LogInRequest): Token? {
+       val token = mainRepository.login(logInRequest = parameters)
      return token
     }
 

@@ -8,8 +8,8 @@ import javax.inject.Inject
 class FocusForkUseCase @Inject constructor(
     private val coroutineDispatcher: CoroutineDispatcher,
     private val forkRepo: ForkRepository
-): UseCase<Unit, Fork?>(coroutineDispatcher){
-    override suspend fun execute(parameters: Unit): Fork? {
+): UseCase<Any?, Fork?>(coroutineDispatcher){
+    override suspend fun execute(parameters: Any?): Fork? {
         return forkRepo.getFocusFork()
     }
 

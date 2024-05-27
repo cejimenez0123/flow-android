@@ -9,23 +9,7 @@ import dagger.hilt.components.SingletonComponent
 
 import javax.inject.Singleton
 
-//@Module
-//@InstallIn(SingletonComponent::class)
-//object AppModule {
-//    @Provides
-//    @Singleton
-//    fun provideSharedModule():SharedModule=SharedModule
-//    @Provides
-//    @Singleton
-//    fun provideUseCaseModule(sharedModule: SharedModule):UseCaseModule
-//    =UseCaseModule(mainRepository = sharedModule.provideMainRepo(sharedModule.provideApiService()), forkRepository = sharedModule.provideForkRepo(sharedModule.provideForkApiService()))
-//    @Provides
-//    @Singleton
-//    fun provideSharedPreference(@ApplicationContext context: Context): SharedPreferencesSource {
-//        return SharedPreferencesSourceImpl(context)
-//    }
-//
-//}
+
 
 @Module
 @InstallIn(SingletonComponent::class)

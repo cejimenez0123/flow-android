@@ -8,6 +8,7 @@ import com.plum.flow.usecase.LoginUseCase
 import com.plum.flow.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -15,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel  @Inject constructor(private val logInUseCase:LoginUseCase,private val sharedPref: SharedPreferencesSource ):  ViewModel(
 ) {
-
+    val token = MutableStateFlow(sharedPref.getToken())
    fun login(email:String,password:String,onComplete:(bool:Boolean)->Unit){
        viewModelScope.launch(Dispatchers.IO) {
            val params = LogInRequest(email, password)

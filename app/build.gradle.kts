@@ -74,6 +74,9 @@ dependencies {
     kapt(libs.androidx.hilt.compiler)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+    implementation("androidx.activity:activity-ktx:1.9.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
+    implementation(libs.androidx.hilt.navigation.compose.v100)
     implementation("androidx.compose.material:material-icons-extended:1.4.3")
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.navigation.compose)
@@ -86,4 +89,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+kapt {
+    correctErrorTypes = true
 }

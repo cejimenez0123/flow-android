@@ -5,12 +5,12 @@ import com.plum.flow.domain.repository.ForkRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
-typealias ListFork = List<Fork>
+
 class ChildrenForkUseCase @Inject constructor(
-    val coroutineDispatcher: CoroutineDispatcher, // Remove the private keyword here
+    private val coroutineDispatcher: CoroutineDispatcher, // Remove the private keyword here
     private val forkRepo: ForkRepository
-) : UseCase<String, ListFork?>(coroutineDispatcher) {
-    override suspend fun execute(id: String): List<Fork>? {
-        return forkRepo.getForkChildren(id)
+) : UseCase<String, List<Fork>?>(coroutineDispatcher) {
+    override suspend fun execute(parameters: String): List<Fork>? {
+        return forkRepo.getForkChildren(parameters)
     }
 }
