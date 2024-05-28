@@ -31,7 +31,6 @@ fun ForkBranch(task: Fork?,viewModel:TreeViewModel= hiltViewModel()){
     val fork by remember {
         mutableStateOf(task)
     }
-
     var resChildren  by remember{
         mutableStateOf<Resource<List<Fork>?>>(Resource.Initial())
     }
@@ -42,11 +41,22 @@ fun ForkBranch(task: Fork?,viewModel:TreeViewModel= hiltViewModel()){
         mutableStateOf(false)
     }
     LaunchedEffect(key1 = fork) {
-       fork?.run{
-        viewModel.getForkChildren(this.id) {
-            resChildren=it
-        }}
+        viewModel.token.collect{
+            fork?.run {
+                if (it==null) {
+                    viewModel.getForkChildren(this.id) {
+                        resChildren = it
+                    }
+                }else{
+                    viewModel.getProtectedForkChildren(this.id){
+
+                        resChildren = it
+                    }
+                }
+            }
+        }
     }
+
     Column() {
 
 
@@ -54,16 +64,21 @@ fun ForkBranch(task: Fork?,viewModel:TreeViewModel= hiltViewModel()){
             modifier = Modifier
                 .height(80.dp)
                 .fillMaxWidth()
-                .background(color=Color.White,shape= RoundedCornerShape(25.dp)).clickable {
-                                                   display=!display
+                .background(
+                    color = Color.White,
+                    shape = RoundedCornerShape(topStart = 30.dp, bottomStart = 30.dp)
+                )
+                .clickable {
+                    display = !display
                 }
+                .padding(top = 8.dp, start = 8.dp)
 
             ,verticalAlignment=Alignment.CenterVertically
         ) {
             Text(
                 fork?.name ?: "Err",
                 fontSize = 28.sp,
-                modifier = Modifier.padding(horizontal = 8.dp, vertical = 6.dp)
+                modifier = Modifier.padding(start=16.dp,top=8.dp,bottom=8.dp)
             )
         }
         if(display){

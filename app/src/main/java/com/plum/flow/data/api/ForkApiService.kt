@@ -8,6 +8,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.Path
 
 interface ForkApiService {
@@ -17,6 +19,8 @@ interface ForkApiService {
     @GET("fork/children/{id}")
     suspend fun getForkChildren(@Path("id")id:String):Response<ForkList>
 
+    @GET("fork/protected/children/{id}")
+    suspend fun getProtectedForks(@Path("id")id:String, @Header("Authorization") token:String):Response<ForkList>
 
     companion object {
         private const val BASE_URL = "https://flow-node-production.up.railway.app/"

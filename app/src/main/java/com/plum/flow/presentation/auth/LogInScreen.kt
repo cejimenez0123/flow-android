@@ -45,7 +45,7 @@ fun LogInScreen( viewModel: AuthViewModel = hiltViewModel(),navigateToTree:()->U
         var cor = rememberCoroutineScope()
         var token = viewModel.token.collectAsState().value
         LaunchedEffect(key1 = token) {
-            if(token!=null) {
+            if(token!=null && token.token.isNotEmpty()) {
                 navigateToTree()
             }
         }

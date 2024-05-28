@@ -2,9 +2,9 @@ package com.plum.flow.presentation.tree
 
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -34,30 +34,33 @@ fun TreeScreen(viewModel: TreeViewModel= hiltViewModel()) {
          
        }
     }
-    Column(horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.background(color= Color(61,104,122))
+    LazyColumn( horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.background(color= Color(61,104,122)).fillMaxSize()
             .fillMaxWidth()){
-        Spacer(modifier=Modifier.weight(1F))
-        when(rootFork){
-            is Resource.Error -> {
-                Text("Error")
-                val res = rootFork as Resource.Error<String>
-                res.message?.run{Text(this)}
-            }
-            is Resource.Initial -> {
-                Text("Initial")
-            }
-            is Resource.Loading -> {
-                Text("Loading")
-            }
-            is Resource.Success -> {
-                fork = (rootFork as Resource.Success<Fork?>).data
+        item {
 
-                ForkBranch(task = fork)
+            when (rootFork) {
+                is Resource.Error -> {
+                    Text("Error")
+                    val res = rootFork as Resource.Error<String>
+                    res.message?.run { Text(this) }
+                }
 
+                is Resource.Initial -> {
+                    Text("Initial")
+                }
+
+                is Resource.Loading -> {
+                    Text("Loading")
+                }
+
+                is Resource.Success -> {
+                    fork = (rootFork as Resource.Success<Fork?>).data
+
+                    ForkBranch(task = fork)
+
+                }
             }
         }
-        Spacer(modifier = Modifier.weight(2F))
-
     }
 }

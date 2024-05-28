@@ -11,6 +11,6 @@ data class Fork(
     val name: String,
     val parentId: String,
     val style: Style,
-    val userId: String
+    val userId: String?
 )
 
